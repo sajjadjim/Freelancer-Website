@@ -4,16 +4,31 @@ import { BiDoughnutChart } from "react-icons/bi";
 import { ToastContainer, toast } from 'react-toastify';
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 import { Link } from 'react-router';
+import { useEffect } from 'react';
 
 
 const BidsCount = () => {
-    const { name, budget, category, deadline, description, email, username, _id } = useLoaderData()
+    const { name, budget, category, deadline, description, email, username, _id, newCount } = useLoaderData()
     const [bidCount, setBidCount] = React.useState(0);
+    const [dataBaseBids, setDataBaseBids] = React.useState(0);
+
+    // Dat Teken The Curent User Bid Count From the Database
+    useEffect(() => {
+        fetch(`https://frelancer-server.vercel.app/tasks/${_id}`)
+            .then(res => res.json())
+            .then(data => {
+                setDataBaseBids(data.newCount);
+            });
+    }, [_id]);
+    // console.log("Database Bids Print", dataBaseBids)
+
+
     const handleBidClick = () => {
         const newCount = bidCount + 1;
         setBidCount(newCount);
-        const newBidCount = { newCount }
-        console.log("object", newBidCount)
+        const setDatabase = newCount + dataBaseBids;
+        const newBidCount = { newCount: setDatabase };
+        // console.log("object", newBidCount)
         fetch(`https://frelancer-server.vercel.app/tasks/${_id}`, {
             method: "PUT",
             headers: {
@@ -59,6 +74,17 @@ const BidsCount = () => {
                         <li>
                             <p>Description : {description}</p>
                         </li>
+                        <li>
+                            <p>Totall Numbers of Bids User : <span className='font-bold text-red-500'>{newCount}</span></p>
+                        </li>
+                        <li>
+                            <button
+                                className='btn text-white bg-[#3a6d55] hover:text-[#3a6d55] hover:bg-white hover:border-[#3a6d55]'
+                                onClick={() => window.location.reload()}
+                            >
+                                Letest Totall Bids
+                            </button>
+                        </li>
                     </ul>
                     <div>
                         <button
@@ -68,7 +94,7 @@ const BidsCount = () => {
                             <BiDoughnutChart className='w-6 h-6 text-yellow-500 cursor-pointer' />
                             Bids
                         </button>
-                        <p>Total Number Bids: {bidCount}</p>
+                        <p>Bids add now: {bidCount} </p>
                     </div>
                 </div>
             </div>

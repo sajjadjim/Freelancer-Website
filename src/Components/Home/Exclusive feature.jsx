@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { FaMobileAlt, FaCode, FaMapMarkerAlt, FaRegSmile, FaFileAlt, FaLaptopCode } from 'react-icons/fa';
 const Exclusivefeature = () => {
     const features = [
@@ -35,7 +36,12 @@ const Exclusivefeature = () => {
 ];
     return (
         <div>
-    <section className=" py-16 px-6">
+    <motion.section className=" py-16 px-6"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+    >
       <div className="text-center mb-12">
         <h2 className="text-lg  font-medium">Why choose us?</h2>
         <h1 className="text-4xl font-bold mt-2">Exclusive Features</h1>
@@ -49,7 +55,7 @@ const Exclusivefeature = () => {
           </div>
         ))}
       </div>
-    </section>
+    </motion.section>
 
 
         </div>

@@ -44,7 +44,7 @@ const AuthProvider = ({ children }) => {
             unsubscribe();
         };
     }, []);
-    console.log(loading)
+    // console.log(loading)
     
 
     // create here a custome auth Data for useing everywhere 

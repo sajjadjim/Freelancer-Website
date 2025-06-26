@@ -69,7 +69,7 @@ const AddTask = () => {
                 <div className='bg-[#F4F3F0] grid justify-center p-10 my-[100px] rounded-lg'>
                     <h1 className='text-[#374151] rancho-fontm font-bold text-4xl text-center px-20'>Add Task</h1>
                     <p className='opacity-60 text-center text-black md:mb-10 mb-4'>
-                        Fill the form to add a new task. User details will be auto-filled. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea placeat nihil voluptas quis fugiat officia nesciunt veniam dolorem, harum consequatur!
+                        Fill the form to add a new task. This Task Will be add your profile and you can manage it later.Everyone can your task and you can update it later.Everybody can bids Your task and you can select the best one for your task.
                     </p>
                     <p className='text-center text-black'>{`"✅${user.email}"`}</p>
                     <div className='grid md:grid-cols-2 grid-cols-1 mt-[32px] gap-2'>
@@ -91,7 +91,7 @@ const AddTask = () => {
 
                         <fieldset className="border border-base-300 rounded-box w-full p-4">
                             <label className="label text-black">Budget $</label>
-                            <input type="text" name='budget' className="input w-full" placeholder="Enter Budget" />
+                            <input type="number" name='budget' className="input w-full" placeholder="Enter Budget" />
                         </fieldset>
 
                         <fieldset className="border border-base-300 rounded-box w-full p-4">

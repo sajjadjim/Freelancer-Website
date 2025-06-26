@@ -6,35 +6,8 @@ const ABoutUs = () => {
     })
     return (
         <div>
-            <h1 className='text-center font-bold md:text-5xl my-10'>About Us & Frequently some question</h1>
+            <h1 className='text-center font-bold md:text-5xl my-10'>About Us</h1>
             <div className="w-full px-2 sm:px-4 md:px-8 lg:px-16 xl:px-32 max-w-screen-2xl mx-auto mb-10">
-                <div className="join join-vertical bg-base-100 w-full">
-                    <div className="collapse collapse-arrow join-item border-base-300 border w-full">
-                        <input type="radio" name="my-accordion-4" defaultChecked />
-                        <div className="collapse-title font-semibold">How do I create an account?</div>
-                        <div className="collapse-content text-sm">Click the "Sign Up" button in the top right corner and follow the registration process.</div>
-                    </div>
-                    <div className="collapse collapse-arrow join-item border-base-300 border w-full">
-                        <input type="radio" name="my-accordion-4" />
-                        <div className="collapse-title font-semibold">I forgot my password. What should I do?</div>
-                        <div className="collapse-content text-sm">Click on "Forgot Password" on the login page and follow the instructions sent to your email.</div>
-                    </div>
-                    <div className="collapse collapse-arrow join-item border-base-300 border w-full">
-                        <input type="radio" name="my-accordion-4" />
-                        <div className="collapse-title font-semibold">How do I update my profile information?</div>
-                        <div className="collapse-content text-sm">Go to "My Account" settings and select "Edit Profile" to make changes.</div>
-                    </div>
-                    <div className="collapse collapse-arrow join-item border-base-300 border w-full">
-                        <input type="radio" name="my-accordion-4" />
-                        <div className="collapse-title font-semibold">How do I add a new task here?</div>
-                        <div className="collapse-content text-sm">Go to "Add Task" and then fill up the infomation and that store to the database.</div>
-                    </div>
-                    <div className="collapse collapse-arrow join-item border-base-300 border w-full">
-                        <input type="radio" name="my-accordion-4" />
-                        <div className="collapse-title font-semibold">How can I see my onw create task?</div>
-                        <div className="collapse-content text-sm">Go to "My browser task" and see here all the task and you can edit your task and delete your task and you can show your Bids number also.</div>
-                    </div>
-                </div>
                 <div className="mt-10 bg-base-200 rounded-lg p-6 shadow-md">
                     <h2 className="text-2xl font-bold mb-4">Contact With Us</h2>
                     <div className="flex flex-col md:flex-row gap-8">

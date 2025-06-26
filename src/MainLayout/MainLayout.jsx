@@ -6,9 +6,11 @@ import Footer from '../Navbar and Footer/Footer';
 const MainLayout = () => {
     return (
         <div>
-            <Navbar></Navbar>
-            <Outlet></Outlet>
-            <Footer></Footer>
+            <div style={{ position: 'sticky', top: 0, zIndex: 1000 }}>
+                <Navbar />
+            </div>
+            <Outlet />
+            <Footer />
         </div>
     );
 };

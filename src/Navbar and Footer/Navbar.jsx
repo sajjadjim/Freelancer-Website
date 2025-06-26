@@ -52,9 +52,15 @@ const Navbar = () => {
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow gap-3">
                         <NavLink to='/'><li>Home</li></NavLink>
-                        <NavLink to='/addTask'><li>Add Task</li></NavLink>
+                        {
+                            user ? (
+                                <>
+                                    <NavLink to='/addTask'><li>Add Task</li></NavLink>
+                                    <NavLink to='/myPostedTask'><li>My Posted Tasks</li></NavLink>
+                                </>
+                            ) : null
+                        }
                         <NavLink to='/browseTask'><li>Browse Tasks</li></NavLink>
-                        <NavLink to='/myPostedTask'><li>My Posted Tasks</li></NavLink>
                         <NavLink to='/about'> <li>About Us</li></NavLink>
                         <NavLink to='/reviewForm'> <li>Rate Us</li></NavLink>
                     </ul>
@@ -64,9 +70,15 @@ const Navbar = () => {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 gap-5">
                     <NavLink to='/'><li>Home</li></NavLink>
-                    <NavLink to='/addTask'><li>Add Task</li></NavLink>
+                    {
+                        user ? (
+                            <>
+                                <NavLink to='/addTask'><li>Add Task</li></NavLink>
+                                <NavLink to='/myPostedTask'><li>My Posted Tasks</li></NavLink>
+                            </>
+                        ) : null
+                    }
                     <NavLink to='/browseTask'><li>Browse Tasks</li></NavLink>
-                    <NavLink to='/myPostedTask'><li>My Posted Tasks</li></NavLink>
                     <NavLink to='/about'> <li>About Us</li></NavLink>
                     <NavLink to='/reviewForm'> <li>Rate Us</li></NavLink>
                 </ul>
@@ -118,6 +130,7 @@ const Navbar = () => {
                             tabIndex={0}
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                             <li><Link to='/userInfo'>Settings</Link></li>
+                            <li><Link to='/userDashBoard'>Dashboard</Link></li>
                             <li>{
                                 user ? <Link onClick={handleLogOut} className='' to='/login'><button className=""> Logout</button></Link> :
                                     <Link className='' to='/login'><button className=""> Login</button></Link>

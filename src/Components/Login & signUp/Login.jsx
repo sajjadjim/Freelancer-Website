@@ -3,10 +3,16 @@ import { Link } from 'react-router';
 import { FcGoogle } from "react-icons/fc";
 import { ToastContainer, toast } from 'react-toastify';
 import { AuthContext_File } from '../../Authcontext/AuthProvider';
+import { useLocation } from 'react-router';
+import { useNavigate } from 'react-router';
 const Login = () => {
   useEffect(() => {
     document.title = 'Login|Page'
   })
+
+  const location = useLocation()
+  // console.log(location)
+  const navigate = useNavigate()
 
   const { signIn, signInWithGoogle } = use(AuthContext_File)
   // log in handle control frunction here
@@ -21,6 +27,9 @@ const Login = () => {
       alert(error.message)
     })
     toast("Successfully Log in Done ✅");
+    setTimeout(() => {
+      navigate(`${location.state ? location.state : '/'}`);
+    }, 1000);
   }
   // --------------------------------------------------------
   // sign in with google here part code ----------------------
@@ -31,6 +40,9 @@ const Login = () => {
         const user = result.user;
         console.log('Google User:', user);
         toast.success("Signed in with Google ✅");
+        setTimeout(() => {
+          navigate(`${location.state ? location.state : '/'}`);
+        }, 1000);
       })
       .catch((error) => {
         console.error('Google sign-in error:', error);
