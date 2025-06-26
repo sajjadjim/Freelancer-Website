@@ -3,7 +3,7 @@
 
 a.active {
     position: relative;
-    border-bottom: 3px solid rgb(109, 106, 106);
+    border-bottom: 3px solid white;
 }
 
 a.active::before {

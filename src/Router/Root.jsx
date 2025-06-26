@@ -28,6 +28,9 @@ import DetailsPicture2 from "../Components/Home/Details_news_Picture/DetailsPage
 import DetailsPicture3 from "../Components/Home/Details_news_Picture/DetailsPage3";
 import DetailsPicture4 from "../Components/Home/Details_news_Picture/DetailsPage4";
 import DetailsPicture5 from "../Components/Home/Details_news_Picture/DeailsPage5";
+import Branding from "../Components/Home/Branding/Branding";
+import { Component } from "lucide-react";
+import DesignPage from "../Components/Home/Design Page/DesignPage";
 
 
 const Routers = createBrowserRouter([
@@ -151,6 +154,14 @@ const Routers = createBrowserRouter([
       {
         path:'/achitecture',
         Component:DetailsPicture5
+      },
+      {
+        path:'/branding',
+        Component:Branding
+      },
+      {
+        path:'/design',
+        Component: DesignPage
       }
     ]
   },

@@ -12,9 +12,9 @@ const Footer = () => {
             <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-10">
   <nav>
     <h6 className="footer-title">Services</h6>
-    <a className="link link-hover">Branding</a>
-    <a className="link link-hover">Design</a>
-    <a className="link link-hover">Marketing</a>
+    <Link to='/branding' className="link link-hover">Branding</Link>
+    <Link to='/design' className="link link-hover">Design</Link>
+    {/* <a className="link link-hover">Marketing</a> */}
   </nav>
   <nav>
     <h6 className="footer-title">Company</h6>
@@ -32,7 +32,7 @@ const Footer = () => {
 </footer>
 <footer className="footer bg-base-200 text-base-content border-base-300 border-t px-10 py-4">
   <aside className="grid-flow-col items-center">
-    <GiHummingbird className='text-3xl text-green-700'></GiHummingbird>
+    <GiHummingbird className='text-3xl text-[#3a6d55]'></GiHummingbird>
     <p>
       Freelance Task Marketplace Ltd.
       <br />

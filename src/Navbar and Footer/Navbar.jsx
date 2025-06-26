@@ -41,7 +41,7 @@ const Navbar = () => {
 
 
     return (
-        <div className="navbar bg-base-100 shadow-sm">
+        <div className="navbar bg-[#3a6d55] text-white shadow-sm">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -64,7 +64,7 @@ const Navbar = () => {
                         <NavLink to='/reviewForm'> <li>Rate Us</li></NavLink>
                     </ul>
                 </div>
-                <a className="font-semibold text-lg flex  items-center gap-1"><GiHummingbird className='text-green-500 md:h-8 md:w-8' /> Freelance Task Marketplace</a>
+                <a className="font-semibold text-lg flex  items-center gap-1"><GiHummingbird className='text-white md:h-8 md:w-8' /> Freelance Task Marketplace</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 gap-5">
@@ -125,7 +125,7 @@ const Navbar = () => {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                            className="menu menu-sm dropdown-content bg-base-100 text-black rounded-box z-1 mt-3 w-52 p-2 shadow">
                             <li><Link to='/userInfo'>Settings</Link></li>
                             <li><Link to='/userDashBoard'>Dashboard</Link></li>
                             <li>{
@@ -152,7 +152,7 @@ const Navbar = () => {
                 </div>
                 {
                     user ? <Link onClick={handleLogOut} className='flex justify-center items-center gap-1' to='/login'><button> </button></Link> :
-                        <Link className='flex justify-center items-center gap-1' to='/login'><button className="btn"> Login</button></Link>
+                        <Link className='flex justify-center items-center gap-1' to='/login'><button className="btn md:ml-2 hover:border-[#3a6d55] "> Login</button></Link>
                 }
             </div>
         </div>
