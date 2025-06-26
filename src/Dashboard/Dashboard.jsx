@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useLoaderData } from "react-router";
 import { AuthContext_File } from "../Authcontext/AuthProvider";
 import { use } from "react";
@@ -10,7 +10,7 @@ import TaskTemplates from "./TaskTemplates";
 const CountCard = ({ label, value, suffix, duration, className }) => {
   const [count, setCount] = React.useState(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
     let start = 0;
     const end = typeof value === "number" ? value : 0;
     if (start === end) return;
@@ -43,10 +43,11 @@ const Dashboard = () => {
   const [users, setUser] = React.useState([]);
   const [totalNewCount, setTotallBids] = React.useState([]);
   const [sidebarOpen, setSidebarOpen] = React.useState(false);
+  const [userTasks , setUsersTasksCurrent] = React.useState([])
   // console.log(user)
 
   // console.log(users)
-  React.useEffect(() => {
+  useEffect(() => {
     fetch("https://frelancer-server.vercel.app/users")
       .then(res => res.json())
       .then(data => {
@@ -57,11 +58,21 @@ const Dashboard = () => {
 
   const allTasks = useLoaderData()
   // Calculate the total newCount from all tasks
-  React.useEffect(() => {
+  useEffect(() => {
     fetch("https://frelancer-server.vercel.app/tasks/new/counts")
       .then(res => res.json())
       .then(data => {
         setTotallBids(data)
+      })
+      .catch(err => console.error("Error fetching users:", err));
+  }, []);
+
+  // console.log(users)
+  useEffect(() => {
+    fetch(`https://frelancer-server.vercel.app/tasks?email=${user.email}`)
+      .then(res => res.json())
+      .then(data => {
+        setUsersTasksCurrent(data);
       })
       .catch(err => console.error("Error fetching users:", err));
   }, []);
@@ -72,6 +83,7 @@ const Dashboard = () => {
     : 0;
 
 
+    // console.log(object)
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -159,8 +171,9 @@ const Dashboard = () => {
                 className="bg-indigo-500"
               />
               <div className="rounded-xl bg-green-500 shadow-md p-8 " style={{ width: "220px", height: "160px" }}>
-                <p className="text-white">Current User</p>
+                <p className="text-white">Total Task Users</p>
                 <p className="text-white font-bold">{user.email}</p>
+                <p className="text-white font-bold md:text-3xl">{userTasks.length}</p>
               </div>
               
             </div>

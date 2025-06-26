@@ -7,12 +7,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import { GiHummingbird } from "react-icons/gi";
 
 const Navbar = () => {
-    const [dbUser, setDbUser] = useState([])
     const { user, logOut } = use(AuthContext_File)
+    const [userInfo, setUserInfo] = useState([])
+
 
     //  Theme control Button Add Here 
     const [theme, setTheme] = useState("light"); // or "dark"
-
     useEffect(() => {
         document.documentElement.setAttribute("data-theme", theme);
     }, [theme]);
@@ -20,7 +20,6 @@ const Navbar = () => {
     const toggleTheme = () => {
         setTheme(prev => (prev === "light" ? "dark" : "light"));
     };
-
 
     const handleLogOut = () => {
         logOut().then(() => {
@@ -30,16 +29,16 @@ const Navbar = () => {
         toast("Logout successfully Done ❌");
     }
 
-    // Filter Data From the Database From  userDatabase Information  Show the name
     useEffect(() => {
-        fetch('https://frelancer-server.vercel.app/users')
-            .then(res => res.json())
-            .then(data => {
-                setDbUser(data);
-            })
-    }, []);
+        if (user && user.email) {
+            fetch(`https://frelancer-server.vercel.app/users?email=${user.email}`)
+                .then(res => res.json())
+                .then(data => {
+                    setUserInfo(data);
+                });
+        }
+    }, [user]);
 
-    const currentUser = dbUser.filter(db => db.email === user?.email)
 
     return (
         <div className="navbar bg-base-100 shadow-sm">
@@ -118,11 +117,9 @@ const Navbar = () => {
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
                                 <Link tabIndex={0} role="button" to='/'>
-                                    {user && user.photoURL ? (
-                                        <img className='rounded-full h-8 w-8 mx-1 cursor-pointer' src={user.photoURL} alt="User" />
-                                    ) : (
-                                        <FaUserCircle className='h-8 w-8 mx-1 cursor-pointer' />
-                                    )}
+                                    {
+                                        <img className='rounded-full h-8 w-8 mx-1 cursor-pointer' src={userInfo[0]?.photoUrl} alt="User" />
+                                    }
                                 </Link>
                             </div>
                         </div>
@@ -143,16 +140,10 @@ const Navbar = () => {
                             <div>
                                 <div>
                                     {
-                                        user.displayName
-                                            ? user.displayName
-                                            : (
-                                                currentUser.length > 0 && currentUser[0].name
-                                                    ? currentUser[0].name
-                                                    : "no name"
-                                            )
+                                        userInfo[0]?.name
                                     }
                                 </div>
-                                <div>{user.email || "No Email"}</div>
+                                <div>{userInfo[0]?.email}</div>
                             </div>
                         ) : (
                             <div>Not logged in</div>

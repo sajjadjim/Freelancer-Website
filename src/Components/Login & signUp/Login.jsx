@@ -87,13 +87,13 @@ const Login = () => {
             </button>
           </form>
           <div className="mt-6 text-center">
-            <p className="text-sm text-gray-600 mb-2">Or sign in with</p>
+            <p className="text-sm text-gray-600 mb-2">Or Log in with</p>
             <button
               onClick={signInGoogle}
               className="w-full flex items-center justify-center space-x-2 text-black bg-white py-2 rounded-xl border border-gray-300 hover:shadow-md transition"
             >
               <FcGoogle />
-              <span>Sign in with Google</span>
+              <span>Log in with Google</span>
             </button>
           </div>
           <p className="mt-4 text-center text-sm text-gray-600">

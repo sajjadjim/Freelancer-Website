@@ -1,7 +1,11 @@
 import React, { use, useEffect } from 'react';
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
+import { FcGoogle } from "react-icons/fc";
 import { AuthContext_File } from '../../Authcontext/AuthProvider';
+import { toast, ToastContainer } from 'react-toastify';
+import { useLocation } from 'react-router';
+import { useNavigate } from 'react-router';
 
 const Signup = () => {
 
@@ -9,9 +13,13 @@ const Signup = () => {
   useEffect(() => {
     document.title = 'Sign Up'
   })
+  const location = useLocation()
+  // console.log(location)
+  const navigate = useNavigate()
 
+  const { createUser, signInWithGoogle, user } = use(AuthContext_File)
 
-  const { createUser } = use(AuthContext_File)
+  console.log("Login in User Information", user);
 
   // users information send to the Database system 
   const handleAddNewUser = async (e) => {
@@ -31,7 +39,7 @@ const Signup = () => {
     // toast("Successfully Log in Done ✅");
 
 
-    // Optional: Send taskData to your backend
+    // Optional: Send taskData to your backend New User Data Store to the Database
     fetch('https://frelancer-server.vercel.app/users', {
       method: 'POST',
       headers: {
@@ -50,6 +58,9 @@ const Signup = () => {
             timer: 1500,
           });
         }
+        setTimeout(() => {
+          navigate(`${location.state ? location.state : '/login'}`);
+        }, 1000);
       })
   }
 
@@ -61,8 +72,51 @@ const Signup = () => {
     return hasUppercase && hasLowercase && isLongEnough;
   };
 
+  //Google lOg in user information Store to the Database 
+  const signInGoogle = () => {
+    signInWithGoogle()
+      .then((result) => {
+        // The signed-in user info.
+        const user = result.user;
+        console.log('Google User:', user);
+        toast.success("Successfully create account  with Google ✅");
+        fetch('https://frelancer-server.vercel.app/users', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: user.displayName,
+            email: user.email,
+            photoUrl: user.photoURL
+          }),
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.insertedId) {
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'New User Added successfully',
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
+          })
+
+        setTimeout(() => {
+          navigate(`${location.state ? location.state : '/'}`);
+        }, 2000);
+      })
+      .catch((error) => {
+        console.error('Google sign-in error:', error);
+        toast.error("Google Sign-in failed ❌");
+      });
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+      <ToastContainer />
       <div className="max-w-md w-full bg-white p-8 rounded-2xl shadow-md">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Create an Account</h2>
         <form
@@ -127,6 +181,16 @@ const Signup = () => {
             Sign Up
           </button>
         </form>
+        <div className="mt-6 text-center">
+          <p className="text-sm text-gray-600 mb-2">Or Log in with</p>
+          <button
+            onClick={signInGoogle}
+            className="w-full flex items-center justify-center space-x-2 text-black bg-white py-2 rounded-xl border border-gray-300 hover:shadow-md transition"
+          >
+            <FcGoogle />
+            <span>Sign in with Google</span>
+          </button>
+        </div>
         <p className="mt-4 text-center text-sm text-gray-600">
           Already have an account?{' '}
           <Link to="/login" className="text-blue-500 hover:underline">
