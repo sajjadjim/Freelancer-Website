@@ -113,9 +113,9 @@ const Routers = createBrowserRouter([
       },
       {
         path:'/reviewForm',
-        element:<PrivateRoute>
+        element:
        <ReviewForm></ReviewForm>
-          </PrivateRoute>
+         
       },
       // footer Path link 
       {

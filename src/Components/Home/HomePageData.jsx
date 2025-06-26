@@ -27,7 +27,7 @@ const HomePageData = () => {
             <div className='grid md:grid-cols-4 grid-cols-1 gap-6 p-6 w-10/12 mx-auto'>
                 {
                     newData.map((task) => <div
-                        key={task.id}
+                        key={task._id}
                         className="relative bg-white/70 backdrop-blur-md border border-white/20 shadow-xl rounded-2xl p-6 transition transform hover:-translate-y-2 hover:shadow-2xl duration-300"
                     >
                         <h3 className="text-xl font-semibold text-gray-900 flex items-center">

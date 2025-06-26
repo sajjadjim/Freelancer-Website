@@ -55,29 +55,40 @@ const ReviewForm = () => {
             })
     }, []);
     const currentUser = dbUser.filter(db => db.email === user?.email)
-    const displayName =
-        user.displayName ||
-        (currentUser.length > 0 && currentUser[0].name) ||
-        "Unknown";
 
 
     return (
-        <div className="max-w-lg mx-auto p-6  shadow-md rounded-2xl border border-gray-200">
-            <h2 className="text-2xl font-bold mb-4 ">Submit Your Review</h2>
+        <div className="max-w-lg mx-auto p-6 shadow-md rounded-2xl border border-gray-200">
+            <h2 className="text-2xl font-bold mb-4">Submit Your Review</h2>
             <form onSubmit={handleReviewAdd} className="space-y-4">
                 <div>
-                    <label className="block text-sm font-semibold ">Name</label>
-                    <input
-                        type="text"
-                        name='username'
-                        className="input w-full text-black bg-gray-100"
-                        value={displayName}
-                        readOnly
-                    />
+                    <label className="block text-sm font-semibold">Name</label>
+                    {user ? (
+                        <input
+                            type="text"
+                            name="username"
+                            className="input w-full text-black bg-gray-100"
+                            value={
+                                currentUser[0]?.name ||
+                                user.displayName ||
+                                "Unknown User"
+                            }
+                            readOnly
+                            required
+                        />
+                    ) : (
+                        <input
+                            type="text"
+                            name="username"
+                            className="input w-full text-black bg-gray-100"
+                            placeholder="Enter your name"
+                            required
+                        />
+                    )}
                 </div>
 
                 <div>
-                    <label className="block text-sm font-semibold ">Review</label>
+                    <label className="block text-sm font-semibold">Review</label>
                     <textarea
                         name="review"
                         required
@@ -87,7 +98,7 @@ const ReviewForm = () => {
                 </div>
 
                 <div>
-                    <label className="block text-sm font-semibold ">Rating</label>
+                    <label className="block text-sm font-semibold">Rating</label>
                     <select
                         name="rating"
                         className="mt-1 p-2 border rounded-md w-full"
